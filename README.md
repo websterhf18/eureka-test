@@ -22,4 +22,4 @@ src
 
 ### Wireframes:
 
-![wireframes](https://github.com/websterhf18/eureka-test/blob/screens.png)
+![wireframes](https://github.com/websterhf18/eureka-test/blob/main/screens.png)
