@@ -36,23 +36,34 @@ import {
 
 // ---
 
-const SplashScreen = (): React.ReactElement => {
+type HeaderProps = {
+  title?: string;
+};
+
+const Header = ({title}: HeaderProps) => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Loading...</Text>
-      <Text style={styles.text}>Awesome App!</Text>
+    <View style={styles.header}>
+      <View style={styles.containerText}>
+        <Text style={styles.headerText}>{title}</Text>
+      </View>
     </View>
   );
 };
-
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+  header: {
+    backgroundColor: '#17a2b8',
+    height: 85,
+    borderBottomRightRadius: 20,
+    borderBottomLeftRadius: 20,
   },
-  text: {
+  containerText: {
+    alignItems: 'center',
+    alignContent: 'center',
+    paddingTop: 50,
+  },
+  headerText: {
     fontSize: 20,
+    color: '#fff',
   },
 });
-export default SplashScreen;
+export default Header;

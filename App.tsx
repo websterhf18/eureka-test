@@ -38,7 +38,7 @@ const App = (): React.ReactElement => {
     <SafeAreaProvider>
       <RNN.NavigationContainer>
         <View style={styles.container}>
-          <StatusBar translucent barStyle={'light-content'} />
+          <StatusBar translucent barStyle={'dark-content'} />
           <PicturesContext.Provider value={{pictures: []}}>
             <MainNavigator />
           </PicturesContext.Provider>
