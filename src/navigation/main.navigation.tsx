@@ -35,7 +35,7 @@ import PictureScreen from '../screens/picture.screen';
 const MainNavigator = (): React.ReactElement => {
   return (
     <MainStack.Navigator
-      initialRouteName={MainRoutes.Picture}
+      initialRouteName={MainRoutes.Splash}
       screenOptions={{headerShown: false}}>
       <MainStack.Screen name={MainRoutes.Splash} component={SplashScreen} />
       <MainStack.Screen name={MainRoutes.Main} component={MainScreen} />

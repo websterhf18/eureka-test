@@ -35,6 +35,7 @@ import Header from '../components/header.component';
 // ↓ fragments ↓
 
 // ↓ utils ↓
+import {createPicture} from '../models/pictures.database';
 
 // ↓ constants ↓
 
@@ -46,7 +47,10 @@ const CameraScreen = ({navigation}: any): React.ReactElement => {
   //Hooks
   const camera = useRef<Camera>(null);
   const [hasPermission, setHasPermission] = useState(false);
-  const [position, setPosition] = useState<string | null>(null);
+  const [position, setPosition] = useState<{
+    latitude: string | number;
+    longitude: string | number;
+  } | null>(null);
   const devices = useCameraDevices();
   const device = devices.back;
 
@@ -71,8 +75,8 @@ const CameraScreen = ({navigation}: any): React.ReactElement => {
   //Get Gps Data
   const getCurrentPosition = async () => {
     Geolocation.getCurrentPosition(
-      pos => {
-        setPosition(JSON.stringify(pos));
+      position => {
+        setPosition(position.coords);
       },
       error => console.log(error),
       {enableHighAccuracy: true},
@@ -84,15 +88,18 @@ const CameraScreen = ({navigation}: any): React.ReactElement => {
     const photo = await camera?.current?.takePhoto({
       flash: 'off',
     });
-    await getCurrentPosition();
+    const pathPhoto: any = photo?.path;
+    await createPicture(pathPhoto, position?.latitude, position?.longitude);
     navigation.navigate(MainRoutes.Picture, {
       path: photo?.path,
-      gps: position,
+      latitude: position?.latitude,
+      longitude: position?.longitude,
     });
   };
   useEffect(() => {
     checkCameraPermission();
     checkGpsPermission();
+    getCurrentPosition();
   }, []);
 
   if (device == null)

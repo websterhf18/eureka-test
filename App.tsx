@@ -27,7 +27,6 @@ import MainNavigator from './src/navigation/main.navigation';
 // ↓ components ↓
 
 // ↓ utils ↓
-import {PicturesContext} from './src/models/pictures.context';
 
 // ↓ constants ↓
 
@@ -39,9 +38,7 @@ const App = (): React.ReactElement => {
       <RNN.NavigationContainer>
         <View style={styles.container}>
           <StatusBar translucent barStyle={'dark-content'} />
-          <PicturesContext.Provider value={{pictures: []}}>
-            <MainNavigator />
-          </PicturesContext.Provider>
+          <MainNavigator />
         </View>
       </RNN.NavigationContainer>
     </SafeAreaProvider>

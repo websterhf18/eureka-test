@@ -1,5 +1,5 @@
 // ↓ beloved react ↓
-import React from 'react';
+import React, {useEffect} from 'react';
 
 // ↓ 3rd party utils ↓
 
@@ -13,6 +13,7 @@ import {
   // ↓ hooks ↓
   // ↓ apis ↓
 } from 'react-native';
+import {MainRoutes} from '../navigation/routes';
 
 // ↓ models & types ↓
 
@@ -36,7 +37,13 @@ import {
 
 // ---
 
-const SplashScreen = (): React.ReactElement => {
+const SplashScreen = ({navigation}: any): React.ReactElement => {
+  useEffect(() => {
+    setTimeout(() => {
+      navigation.navigate(MainRoutes.Main);
+    }, 1500);
+  }, []);
+
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Loading...</Text>
